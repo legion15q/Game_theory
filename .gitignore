@@ -1,0 +1,9 @@
+*.txt
+*.pdf
+*.idea/
+*.out
+*.log
+*.tex
+*.sty
+*.png
+*.aux
