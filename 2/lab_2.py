@@ -8,19 +8,24 @@ def main():
          [7, 5, 8],
          [16, 6, 2]]
     )
-    sum_1 = np.zeros(3)  # -- суммарный выигрыш первого игрока
-    sum_2 = np.zeros(3)  # -- суммарный выиграш второго игрока
+    Braun_Robinson(A)
+    return 1
+
+def Braun_Robinson(matrix_):
+    N = len(matrix_)
+    sum_1 = np.zeros(N)  # -- суммарный выигрыш первого игрока
+    sum_2 = np.zeros(N)  # -- суммарный выиграш второго игрока
     k = 0
     v_i1 = np.array([])
     v_i2 = np.array([])
-    x_bar = np.zeros(3)  # -- смешанная стратегия первого игрока
-    y_bar = np.zeros(3)  # -- смешанная стратегия второго игрока
+    x_bar = np.zeros(N)  # -- смешанная стратегия первого игрока
+    y_bar = np.zeros(N)  # -- смешанная стратегия второго игрока
     epsilon = 1
     while (epsilon > 0.3) and (k != 500):
         i = random.randint(0, 2)
         j = random.randint(0, 2)
-        sum_1 += A[:, j]
-        sum_2 += A[i]
+        sum_1 += matrix_[:, j]
+        sum_2 += matrix_[i]
         v_i1 = np.append(v_i1, np.amax(sum_1) / (k + 1))
         v_i2 = np.append(v_i2, np.amin(sum_2) / (k + 1))
         x_bar[i] += 1
@@ -34,10 +39,8 @@ def main():
     v_top = np.amin(v_i1)
     print(v_lower)
     print(v_top)
-    print(x_bar/k)
-    print(y_bar/k)
-    return 1
-
+    print(x_bar / k)
+    print(y_bar / k)
 
 if __name__ == '__main__':
     main()
